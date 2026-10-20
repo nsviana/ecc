@@ -55,7 +55,7 @@ describe('roleta e jornadas', () => {
   it('permite selecionar o casal e girar com Enter', async () => {
     const user = userEvent.setup();
     render(<App/>);
-    const coupleButton = screen.getByRole('button', { name: /Jamile.*Helder/i });
+    const coupleButton = screen.getByRole('button', { name: /Ana Arrais.*Igor/i });
     coupleButton.focus();
     await user.keyboard('{Enter}');
     const spinButton = screen.getByRole('button', { name: /Sortear nossa jornada/i });
@@ -132,7 +132,7 @@ describe('roleta e jornadas', () => {
     saveState(state);
     render(<App/>);
 
-    fireEvent.click(screen.getByRole('button', { name: /Jamile.*Helder/i }));
+    fireEvent.click(screen.getByRole('button', { name: /Ana Arrais.*Igor/i }));
 
     const expectedNumbers = ['01', '02', '03', '04', '06', '07', '08'];
     const wheelNumbers = Array.from(document.querySelectorAll('.wheel-number')).map(node => node.textContent);
@@ -146,8 +146,8 @@ describe('roleta e jornadas', () => {
     state.stage = 'QUESTIONS';
     saveState(state);
     render(<App/>);
-    expect(screen.getByText(/JAMILE RESPONDE PARA HELDER/i)).toBeInTheDocument();
-    expect(screen.getByText(/HELDER RESPONDE PARA JAMILE/i)).toBeInTheDocument();
+    expect(screen.getByText(/ANA ARRAIS RESPONDE PARA IGOR/i)).toBeInTheDocument();
+    expect(screen.getByText(/IGOR RESPONDE PARA ANA ARRAIS/i)).toBeInTheDocument();
     expect(screen.getByText(/Em qual momento simples da nossa rotina/i)).toBeInTheDocument();
   });
 
