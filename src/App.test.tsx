@@ -23,7 +23,7 @@ describe('roleta e jornadas', () => {
   it('sorteia uma jornada disponível uma vez e completa o fluxo', async () => {
     vi.useFakeTimers();
     render(<App/>);
-    fireEvent.click(screen.getByRole('button', { name: /Ana Alice.*Nairon/i }));
+    fireEvent.click(screen.getByRole('button', { name: /Livia.*Marcos/i }));
     expect(screen.getByRole('button', { name: /Sortear nossa jornada/i })).toBeInTheDocument();
     const spin = screen.getByRole('button', { name: /Sortear nossa jornada/i });
     fireEvent.click(spin);
@@ -40,8 +40,8 @@ describe('roleta e jornadas', () => {
     fireEvent.click(screen.getByRole('button', { name: /Iniciar nossa jornada/i }));
     expect(screen.getByText(new RegExp(journeys.find(j => j.id === stored.assignments['pedro-teresa'].journeyId)!.title))).toBeInTheDocument();
     fireEvent.click(screen.getByRole('button', { name: /Iniciar nossa partilha/i }));
-    expect(screen.getByText(/ANA ALICE RESPONDE PARA NAIRON/i)).toBeInTheDocument();
-    expect(screen.getByText(/NAIRON RESPONDE PARA ANA ALICE/i)).toBeInTheDocument();
+    expect(screen.getByText(/LIVIA RESPONDE PARA MARCOS/i)).toBeInTheDocument();
+    expect(screen.getByText(/MARCOS RESPONDE PARA LIVIA/i)).toBeInTheDocument();
     fireEvent.click(screen.getByRole('button', { name: /Continuar nossa caminhada/i }));
     expect(screen.getByText(/Paráfrase inspirada/i)).toBeInTheDocument();
     fireEvent.click(screen.getByRole('button', { name: /Assumir nosso propósito/i }));
@@ -49,13 +49,13 @@ describe('roleta e jornadas', () => {
     stored = JSON.parse(localStorage.getItem(appConfig.storageKey) ?? '{}');
     expect(stored.completedIds).toContain('pedro-teresa');
     expect(stored.assignments['pedro-teresa']).toBeDefined();
-    expect(screen.queryByRole('button', { name: /Ana Alice.*Nairon/i })).not.toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: /Livia.*Marcos/i })).not.toBeInTheDocument();
   });
 
   it('permite selecionar o casal e girar com Enter', async () => {
     const user = userEvent.setup();
     render(<App/>);
-    const coupleButton = screen.getByRole('button', { name: /Laice.*Izael/i });
+    const coupleButton = screen.getByRole('button', { name: /Jamile.*Helder/i });
     coupleButton.focus();
     await user.keyboard('{Enter}');
     const spinButton = screen.getByRole('button', { name: /Sortear nossa jornada/i });
@@ -67,11 +67,11 @@ describe('roleta e jornadas', () => {
 
   it('voltar da roleta antes do sorteio não cria nem libera atribuição', () => {
     render(<App/>);
-    fireEvent.click(screen.getByRole('button', { name: /Ana Alice.*Nairon/i }));
+    fireEvent.click(screen.getByRole('button', { name: /Livia.*Marcos/i }));
     fireEvent.keyDown(window, { key: 'Escape' });
     const state = JSON.parse(localStorage.getItem(appConfig.storageKey) ?? '{}');
     expect(state.assignments).toEqual({});
-    expect(screen.getByRole('button', { name: /Ana Alice.*Nairon/i })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /Livia.*Marcos/i })).toBeInTheDocument();
   });
 
   it('mantém uma jornada atribuída ao voltar para a tela inicial', () => {
@@ -79,7 +79,7 @@ describe('roleta e jornadas', () => {
     render(<App/>);
     fireEvent.keyDown(window, { key: 'Escape' });
     expect(JSON.parse(localStorage.getItem(appConfig.storageKey) ?? '{}').assignments['pedro-teresa'].journeyId).toBe(journeys[0]!.id);
-    expect(screen.queryByRole('button', { name: /Ana Alice.*Nairon/i })).not.toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: /Livia.*Marcos/i })).not.toBeInTheDocument();
   });
 
   it('persiste a atribuição ao atualizar e não oferece a jornada novamente', () => {
@@ -88,7 +88,7 @@ describe('roleta e jornadas', () => {
     const first = render(<App/>);
     expect(screen.getAllByText(journeys[0]!.title).length).toBeGreaterThan(0);
     expect(screen.getByRole('button', { name: /Iniciar nossa jornada/i })).toBeInTheDocument();
-    expect(screen.queryByRole('button', { name: /Ana Alice.*Nairon/i })).not.toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: /Livia.*Marcos/i })).not.toBeInTheDocument();
     first.unmount();
     render(<App/>);
     fireEvent.click(screen.getByRole('button', { name: /Organização/i }));
@@ -132,7 +132,7 @@ describe('roleta e jornadas', () => {
     saveState(state);
     render(<App/>);
 
-    fireEvent.click(screen.getByRole('button', { name: /Laice.*Izael/i }));
+    fireEvent.click(screen.getByRole('button', { name: /Jamile.*Helder/i }));
 
     const expectedNumbers = ['01', '02', '03', '04', '06', '07', '08'];
     const wheelNumbers = Array.from(document.querySelectorAll('.wheel-number')).map(node => node.textContent);
@@ -146,8 +146,8 @@ describe('roleta e jornadas', () => {
     state.stage = 'QUESTIONS';
     saveState(state);
     render(<App/>);
-    expect(screen.getByText(/LAICE RESPONDE PARA IZAEL/i)).toBeInTheDocument();
-    expect(screen.getByText(/IZAEL RESPONDE PARA LAICE/i)).toBeInTheDocument();
+    expect(screen.getByText(/JAMILE RESPONDE PARA HELDER/i)).toBeInTheDocument();
+    expect(screen.getByText(/HELDER RESPONDE PARA JAMILE/i)).toBeInTheDocument();
     expect(screen.getByText(/Em qual momento simples da nossa rotina/i)).toBeInTheDocument();
   });
 
@@ -160,7 +160,7 @@ describe('roleta e jornadas', () => {
     const state = JSON.parse(localStorage.getItem(appConfig.storageKey) ?? '{}');
     expect(state.assignments['pedro-teresa']).toBeUndefined();
     fireEvent.click(screen.getByRole('button', { name: 'Fechar' }));
-    expect(screen.getByRole('button', { name: /Ana Alice.*Nairon/i })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /Livia.*Marcos/i })).toBeInTheDocument();
   });
 
   it('reinicia após confirmação e limpa atribuições e conclusões', () => {

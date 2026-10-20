@@ -35,7 +35,7 @@ export const journeys: Journey[] = [
     id: 'alegria-servir', title: 'A Alegria de Servir', subtitle: 'Doação, pobreza de espírito, simplicidade, alegria e oração',
     introduction: 'O ECC nos apresenta uma espiritualidade que se manifesta na doação, na pobreza de espírito, na simplicidade, na alegria e na oração. Esses valores ajudam a transformar a vida cristã em serviço.',
     questions: {
-      forPartner1: 'Dos cinco pontos da espiritualidade do ECC, qual você acha que mais combina comigo? E em qual eu ainda estou em fase de treinamento? 😄',
+      forPartner1: 'Qual gesto simples de cuidado ou serviço você acha que combina mais comigo? 😄',
       forPartner2: 'Se nossa missão fosse simplesmente levar alegria a alguém hoje, o que você inventaria para fazermos juntos?',
     },
     bible: { references: ['João 15,16-17'], text: 'Cristo nos escolheu para produzir frutos duradouros e nos chamou a viver no amor.', textType: 'paraphrase', reflection: 'A espiritualidade do ECC nos convida a ir além das palavras. A pobreza de espírito se vive na humildade, no desapego, na disponibilidade e na confiança em Deus; não significa simplesmente falta de recursos materiais. A simplicidade, a generosidade, a alegria e a oração tornam nosso testemunho mais autêntico. Quando servimos sem buscar reconhecimento, ajudamos a produzir frutos que permanecem.' },
