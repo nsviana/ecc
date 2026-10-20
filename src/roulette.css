@@ -1,0 +1,54 @@
+.roulette-screen{height:100%;min-height:0;overflow:auto;display:flex;flex-direction:column;align-items:center;padding:clamp(20px,3vh,34px) clamp(22px,4vw,58px) 38px;background:radial-gradient(ellipse at 50% 44%,#fffdf8,#f3ebda)}
+.roulette-heading{text-align:center;flex:none}
+.roulette-heading h2{font:clamp(28px,3vw,42px) var(--serif);font-weight:400;color:var(--green);margin:8px 0 4px}
+.roulette-heading h2 i{font-weight:400;color:#a48752}
+.roulette-heading p{font:16px var(--serif);color:#687169;margin:0}
+.roulette-layout{width:100%;max-width:1120px;flex:1;min-height:0;display:flex;align-items:center;justify-content:center;gap:clamp(28px,5vw,70px);padding:14px 0}
+.wheel-column{flex:none;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;min-width:0}
+.wheel-wrap{position:relative;width:min(39vw,42vh,420px);min-width:260px;aspect-ratio:1;display:grid;place-items:center;padding:7px;border-radius:50%;background:linear-gradient(135deg,#d5b778,#f3e5c2 40%,#9d8150);box-shadow:0 12px 35px #183c3425}
+.journey-wheel{width:100%;height:100%;overflow:visible;transform-origin:50% 50%;filter:drop-shadow(0 3px 4px #183c3430)}
+.journey-wheel.spinning{transition:transform 3.5s cubic-bezier(.12,.72,.13,1)}
+.journey-wheel.no-wheel-motion{transition:none!important}
+.wheel-pointer{position:absolute;z-index:2;top:-5px;left:50%;transform:translateX(-50%);width:0;height:0;border-left:13px solid transparent;border-right:13px solid transparent;border-top:28px solid #987b47;filter:drop-shadow(0 2px 2px #25312c50)}
+.wheel-number{font:700 16px Arial,sans-serif;fill:#fffdf8;paint-order:stroke;stroke:#183c3470;stroke-width:1px;stroke-linejoin:round}
+.wheel-number.dark-number{fill:#25312c;stroke:#fffdf877}
+.wheel-number.winner-number{font-size:20px;stroke-width:1.5px}
+.wheel-center{font:700 18px Arial,sans-serif;letter-spacing:1px;fill:#244b40}
+.spin-status{min-height:25px;font:italic 14px var(--serif);color:#8a754d;margin:8px 0 0}
+.draw-result{min-height:76px;margin:8px 0 0;text-align:center}
+.draw-result>span{font-size:9px;letter-spacing:.18em;color:#9b8050;font-weight:700}
+.draw-result h3{font:clamp(20px,2vw,27px) var(--serif);color:var(--green);font-weight:400;margin:4px 0}
+.draw-result p{font-size:12px;color:#77796f;margin:0}
+.spin-button{margin-top:13px;min-width:255px;min-height:54px;font-size:15px}
+.journey-legend{list-style:none;margin:0;padding:8px 10px;max-height:min(60vh,540px);overflow:auto;width:min(48%,510px);display:grid;grid-template-columns:1fr;gap:3px;scrollbar-width:thin;scrollbar-color:#d5b77880 transparent}
+.journey-legend li{display:flex;align-items:center;gap:12px;padding:8px 10px;border-radius:6px;border:1px solid transparent;color:#465249}
+.journey-legend li>span{flex:none;width:30px;height:30px;border:1px solid #c7ad75;border-radius:50%;display:grid;place-items:center;font:12px var(--serif);color:#826b3e}
+.journey-legend li div{display:flex;flex-direction:column;gap:3px;text-align:left}
+.journey-legend strong{font:16px var(--serif);font-weight:400;color:#315044}
+.journey-legend small{font-size:10px;color:#858478}
+.journey-legend li.legend-winner{background:#e8dfcc;border-color:#c8ad75}
+.roulette-warning{max-width:680px;margin:auto;padding:22px 26px;border:1px solid #c9ad75;border-radius:8px;background:#fffaf0;color:#725d38;font:18px/1.6 var(--serif);text-align:center}
+.couple-button:disabled{cursor:default;opacity:.68}
+.roulette-footnote{flex:none;text-align:center;color:#96907d;font-size:10px;letter-spacing:.05em;margin:8px 0 0}
+.journey-admin{width:min(1000px,96vw)}
+.assignment-table-wrap{max-height:min(42vh,360px);overflow:auto;margin:14px 0;border:1px solid #e5dccb;border-radius:6px}
+.assignment-table{width:100%;border-collapse:collapse;text-align:left;font-size:12px}
+.assignment-table th{position:sticky;top:0;background:#f1eadb;color:#756544;font-size:10px;letter-spacing:.1em;padding:9px 11px;z-index:1}
+.assignment-table td{vertical-align:top;padding:9px 11px;border-top:1px solid #eee8dc;color:#485249}
+.assignment-table td:first-child{white-space:nowrap;font-weight:600}
+.assignment-table td:nth-child(2){font-family:var(--serif);font-size:14px}
+.assignment-status{display:block;color:#7c704f;font-size:10px;margin-bottom:5px}
+.assignment-actions{display:flex;flex-wrap:wrap;gap:5px}
+.assignment-actions button{border:1px solid #c9b98f;background:#fffdf8;border-radius:4px;padding:5px 8px;color:#315044;font-size:10px}
+.assignment-actions button.cancel-assignment{color:#8c584d;border-color:#ddc9bd}
+.inline-confirm{margin-top:8px;padding:8px}
+.inline-confirm p{font:13px/1.4 var(--serif)}
+.migration-backdrop{z-index:20}
+.migration-modal{width:min(620px,100%)}
+.migration-modal p{font:15px/1.6 var(--serif);color:#59635b}
+.migration-modal .primary-button{margin-top:6px}
+.migration-error{padding:10px 12px;border-left:2px solid #a6574d;background:#fbefeb;color:#86473f!important;font-size:12px!important}
+@media(max-width:900px){.roulette-layout{gap:20px}.wheel-wrap{width:min(42vw,40vh,360px);min-width:250px}.journey-legend{width:min(50%,470px)}.journey-legend strong{font-size:14px}}
+@media(max-width:700px){.roulette-screen{min-height:650px;padding:22px 16px 40px}.roulette-heading p{font-size:14px}.roulette-layout{flex-direction:column;gap:10px;padding:12px 0}.wheel-wrap{width:min(68vw,310px);min-width:245px}.journey-legend{width:100%;max-height:215px;grid-template-columns:1fr 1fr;padding:4px}.journey-legend li{gap:7px;padding:6px 4px}.journey-legend li>span{width:25px;height:25px;font-size:10px}.journey-legend strong{font-size:12px}.journey-legend small{font-size:9px}.spin-button{min-width:230px;min-height:50px}.roulette-footnote{font-size:9px}.assignment-table-wrap{max-height:40vh}.assignment-table{min-width:660px}.journey-admin{padding:30px 17px}.assignment-table td:first-child{white-space:normal}}
+@media(max-height:760px) and (min-width:701px){.roulette-screen{padding-top:14px;padding-bottom:30px}.roulette-heading p{font-size:14px}.roulette-layout{padding:5px 0}.wheel-wrap{width:min(35vw,38vh,330px);min-width:240px}.journey-legend{max-height:48vh}.journey-legend li{padding:5px 8px}.journey-legend strong{font-size:14px}.journey-legend small{font-size:9px}.draw-result{min-height:65px}.spin-button{min-height:48px;margin-top:8px}}
+@media(prefers-reduced-motion:reduce){.journey-wheel{transition:none!important}}

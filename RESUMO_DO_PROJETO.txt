@@ -1,0 +1,118 @@
+ECC — O AMOR QUE NOS UNE E NOS ENVIA
+Resumo da implementação e da lógica do aplicativo
+
+OBJETIVO
+
+Aplicação web para apoiar a dinâmica da 3ª reunião de um círculo de casais do ECC. O conteúdo pastoral é original e inspirado em Mateus 28,16-20; Gálatas 3,27; João 13,34-35; e João 15,16-17. Não é uma reprodução oficial do temário do ECC.
+
+O projeto usa React, TypeScript, Vite, CSS, Lucide React, localStorage e Vitest. Não possui backend, banco de dados ou serviços externos. A interface foi desenhada para TV, mas se adapta a monitores, tablets e celulares. Usa tipografia disponível no sistema, sem baixar fontes da internet. Imagens locais são opcionais; se estiverem ausentes, a interface apresenta uma ilustração de reserva em CSS.
+
+ESTRUTURA COMPLETA
+
+D:\.AppECC\
+|-- .github\
+|   `-- workflows\
+|       `-- deploy.yml                  Publicação automática no GitHub Pages
+|-- public\
+|   |-- favicon.svg                     Ícone da aplicação
+|   `-- images\
+|       `-- .gitkeep                    Mantém a pasta para imagens opcionais
+|-- src\
+|   |-- data\
+|   |   |-- appConfig.ts                Título, mensagens, referências e caminhos de imagens
+|   |   `-- couples.ts                  Oito casais e seus roteiros editáveis
+|   |-- hooks\
+|   |   |-- useActivityProgress.ts      Estado, etapas e ações do fluxo
+|   |   `-- useRemoteNavigation.ts      Setas, Escape e Backspace
+|   |-- services\
+|   |   `-- storage.ts                  Leitura, validação e gravação do localStorage
+|   |-- App.test.tsx                    Testes do fluxo de participação
+|   |-- App.tsx                          Interface e telas principais
+|   |-- main.tsx                         Entrada React e importação dos estilos
+|   |-- navigation.css                   Retorno visível e animação de transição
+|   |-- styles.css                       Identidade visual e layout responsivo
+|   |-- testSetup.ts                     Preparação do ambiente de testes
+|   `-- types.ts                         Tipos TypeScript do conteúdo e do estado
+|-- .gitignore                           Ignora dependências, build e arquivos temporários
+|-- index.html                           Documento HTML e metadados
+|-- package-lock.json                    Versões travadas das dependências
+|-- package.json                         Dependências e comandos npm
+|-- README.md                            Instruções completas de uso e publicação
+|-- tsconfig.json                        Configuração TypeScript principal
+|-- tsconfig.app.json                    Configuração TypeScript da aplicação
+|-- tsconfig.node.json                   Configuração TypeScript do Vite
+|-- vite.config.ts                       Build Vite e caminho-base do GitHub Pages
+|-- vitest.config.ts                     Configuração dos testes
+`-- RESUMO_DO_PROJETO.txt                Este resumo
+
+O diretório node_modules e a pasta dist são gerados localmente. Não fazem parte dos arquivos-fonte do projeto; dist é recriada pelo build e node_modules pelas dependências instaladas.
+
+COMO A LÓGICA FUNCIONA
+
+1. Na inicialização, useActivityProgress chama loadProgress em storage.ts. O progresso salvo contém os IDs dos casais concluídos, o casal em andamento, a etapa atual e a ordem de exibição.
+
+2. O armazenamento é identificado por IDs estáveis dos casais, e não pela posição deles na lista. Dados inválidos são tratados com segurança; IDs que não existem mais na lista são ignorados. Se o navegador não permitir armazenamento, a aplicação ainda pode funcionar durante a sessão.
+
+3. Na tela inicial, são exibidos os casais ainda disponíveis. Ao selecionar um casal, seu ID fica ativo e a etapa passa a INTRODUCTION. A interface consulta os dados desse ID em couples.ts e mostra o conteúdo próprio daquele casal.
+
+4. O casal percorre as etapas INTRODUCTION, QUESTIONS, BIBLE_REFLECTION e PURPOSE. Os botões de ação avançam manualmente; não existe avanço automático por tempo. As perguntas são respondidas oralmente e podem ser passadas sem justificativa.
+
+5. O retorno visível, Escape ou Backspace volta uma etapa. Voltar da apresentação retorna à tela inicial. Nenhuma dessas ações marca a participação como concluída.
+
+6. Só o botão “Concluir e voltar ao encontro”, ao final do propósito, adiciona o ID do casal aos concluídos. A gravação é imediata, o casal deixa de aparecer entre os disponíveis e o contador é atualizado.
+
+7. Se a página for atualizada durante a participação, o casal ativo e sua etapa são recuperados. Se já tiver concluído, a conclusão permanece salva.
+
+8. Quando não há mais casais disponíveis e há participações concluídas, aparece a celebração coletiva. “Voltar ao início” leva a uma tela inicial que informa que a dinâmica terminou; os casais não reaparecem como disponíveis.
+
+9. O painel “Organização” mostra o progresso e permite restaurar individualmente um casal, embaralhar os disponíveis, reduzir ou ativar animações e reiniciar a dinâmica. O reinício pede confirmação. São controles locais, sem senha ou autenticação.
+
+10. A navegação por teclado e controle remoto usa o foco dos elementos interativos. As setas movem o foco entre controles; Enter aciona o controle focado. Os navegadores e controles de TV variam, então a compatibilidade deve ser conferida no equipamento da reunião.
+
+IMAGENS
+
+Os caminhos centralizados em src/data/appConfig.ts estão preparados para:
+  public/images/sagrada-familia.webp
+  public/images/igreja-fundo.webp
+  public/images/biblia-aberta.webp
+  public/images/vitral.webp
+  public/images/cruz.webp
+  public/images/encerramento.webp
+
+As imagens ainda não foram adicionadas. A arte da Sagrada Família e a imagem de encerramento possuem fallback visual, portanto a ausência dos arquivos não interrompe o aplicativo.
+
+COMANDOS
+
+  npm install       Instala as dependências
+  npm run dev       Inicia o servidor local de desenvolvimento
+  npm run build     Verifica os tipos e gera o build de produção
+  npm run preview   Abre localmente o build de produção
+  npm test          Executa os testes automatizados
+
+No PowerShell onde scripts npm.ps1 estejam bloqueados, use npm.cmd no lugar de npm. O build e os cinco testes automatizados foram executados com sucesso durante a implementação.
+
+PUBLICAÇÃO
+
+O workflow em .github/workflows/deploy.yml publica no GitHub Pages quando há envio para a branch main. No repositório GitHub, é preciso habilitar Pages usando a origem GitHub Actions. O nome do repositório é usado para configurar o caminho-base do site. O endereço seguirá o formato:
+
+  https://USUARIO.github.io/NOME-REPOSITORIO/
+
+O projeto foi preparado localmente. Nenhum repositório remoto foi configurado e nenhuma publicação foi realizada.
+
+EDIÇÃO DE CONTEÚDO
+
+Edite src/data/couples.ts para alterar nomes, títulos, mensagens de acolhida, perguntas, referências bíblicas, paráfrases, reflexões e propósitos. Preserve os IDs se quiser manter o histórico existente no navegador. Edite src/data/appConfig.ts para alterar os textos gerais, referências e caminhos das imagens.
+
+O conteúdo bíblico atual está identificado como paráfrase e não como citação literal. Se for inserida uma citação literal no futuro, também devem ser registrados o tipo, a tradução e a fonte, usando uma tradução cuja reprodução seja autorizada.
+
+ATUALIZAÇÃO — SEGUNDA RODADA PASTORAL
+
+Tema atualizado para “3ª Reunião — O ECC” e “Do Encontro à Missão”. Os oito roteiros foram substituídos por reflexões sobre a experiência do Encontro, crescimento espiritual e Batismo, amor como testemunho, espiritualidade do ECC, fé familiar, participação na Igreja, frutos duradouros e missão.
+
+As quatro passagens do temário permanecem como paráfrases devidamente identificadas. Os cinco pontos espirituais do ECC — doação, pobreza de espírito, simplicidade, alegria e oração — aparecem no roteiro sobre espiritualidade; pobreza é explicada como humildade, desapego, disponibilidade e confiança em Deus. A abertura, a instrução afetiva das perguntas, a mensagem final, o propósito coletivo, a oração à Sagrada Família e a orientação ao animador estão centralizados em src/data/appConfig.ts.
+
+Os IDs, nomes, chave e lógica de progresso foram preservados. Nenhum dado salvo foi apagado e nada foi publicado. Build aprovado e 8 testes aprovados nesta rodada. A validação visual manual em navegador/TV não foi feita porque nenhum navegador estava disponível para automação nesta sessão; os breakpoints e estilos responsivos existentes foram preservados, com pequenos ajustes tipográficos.
+
+ATUALIZAÇÃO — TERCEIRA RODADA
+
+As perguntas dos oito casais foram simplificadas segundo a associação de respondente e cônjuge do roteiro, com uma instrução acolhedora e opção de passar. Títulos, introduções, passagens, reflexões e propósitos foram preservados. A estrutura do cartão agora identifica claramente quem responde para quem. IDs, nomes, estado e dados locais permanecem intactos.

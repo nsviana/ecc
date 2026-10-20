@@ -1,0 +1,18 @@
+export const appConfig = {
+  title: 'ECC — O Amor que nos Une e nos Envia',
+  subtitle: 'O Encontro passou. Nossa missão está apenas começando.',
+  meeting: '3ª Reunião — O ECC',
+  theme: 'Do Encontro à Missão',
+  welcome: 'Deus nos proporcionou uma experiência especial por meio do Encontro de Casais com Cristo.\n\nHoje somos convidados a recordar o que vivemos, reconhecer os frutos dessa caminhada e descobrir como podemos transformar essa experiência em amor, fé e serviço.\n\nCada casal terá um momento de partilha, iluminado pela Palavra de Deus.\n\nQue este seja um momento de alegria, gratidão e renovação do nosso compromisso cristão.',
+  participationInstruction: 'Escolha o nome de um casal para iniciar seu momento de partilha.',
+  questionInstruction: 'Agora é a vez de vocês! Respondam com simplicidade, sem pensar muito. O importante é compartilhar com carinho.',
+  closingTitle: 'O Encontro termina. A missão continua.',
+  closingSubtitle: 'Fomos chamados a amar, servir e testemunhar Cristo.',
+  closing: 'O Encontro de Casais com Cristo nos proporcionou momentos de alegria, reflexão e aproximação com Deus.\n\nMas a experiência que vivemos não deve ficar apenas na lembrança.\n\nSomos convidados a renovar nossa vida matrimonial, fortalecer nossas famílias e colocar nossos dons a serviço da Igreja e da comunidade.\n\nQue a doação, a pobreza de espírito, a simplicidade, a alegria e a oração acompanhem nossa caminhada.\n\nE que os frutos do ECC permaneçam vivos em nossos lares, em nossa comunidade e em nossas atitudes de cada dia.',
+  collectivePurpose: 'Como casais do ECC, queremos transformar a experiência do Encontro em atitudes concretas de amor, fraternidade, participação e serviço. Como grupo, fortaleceremos a fraternidade e partilharemos os frutos da experiência com respeito e sigilo.',
+  closingPrayer: 'Sagrada Família de Nazaré, ensinai-nos a viver unidos no amor de Cristo.\n\nFortalecei nossas famílias na fé, ajudai-nos a cultivar a oração, a simplicidade, a alegria e o espírito de doação.\n\nQue nossos lares sejam sinais do amor de Deus e que nossa caminhada produza frutos de paz, fraternidade e serviço.\n\nAmém.',
+  animatorNote: 'Momento de oração comunitária: Pai-Nosso, Ave-Maria e Glória.',
+  images: { holyFamily: 'images/sagrada-familia.png', church: 'images/igreja-fundo.png', bible: 'images/biblia-aberta.png', stainedGlass: 'images/vitral.png', cross: 'images/cruz.png', closing: 'images/encerramento.png' },
+  references: ['Mt 28,16-20', 'Gl 3,27', 'Jo 13,34-35', 'Jo 15,16-17'], reducedMotion: false,
+  storageKey: 'ecc-circle-meeting-progress-v1', participantVersion: '2026-01',
+};

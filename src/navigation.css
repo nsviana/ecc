@@ -1,0 +1,16 @@
+.progress-steps{position:relative}
+.experience-stage{animation:stage-arrive .34s ease-out both}
+@keyframes stage-arrive{from{opacity:.72;transform:translateY(7px)}to{opacity:1;transform:translateY(0)}}
+.welcome-message p{font:clamp(15px,1.35vw,18px)/1.48 var(--serif);color:#59635b;margin:0 0 9px;max-width:620px}
+.question-instruction{font:italic 14px var(--serif);color:#88734c;margin:-13px 0 17px}
+.final-copy h2{max-width:680px}
+.final-message p{font:14px/1.5 var(--serif);color:#5d675e;margin:0 0 9px}
+.prayer>div p{font:13px/1.5 var(--serif);color:#455249;margin:5px 0}
+.animator-note{border-top:1px solid #dfd5c3;padding-top:9px!important;font:italic 12px var(--serif)!important;color:#86754e!important}
+.welcome-prompt>span:last-child{max-width:390px}
+.stage-back{position:absolute;left:0;top:0;height:25px;padding:0 8px;background:transparent;border:1px solid #d6c8aa;border-radius:4px;color:#526057;display:flex;align-items:center;gap:3px;font-size:11px}
+.stage-back:hover{border-color:#a88c55;color:#315044}
+@media(max-width:700px){.stage-back{position:static;flex:none;font-size:10px;padding:0 5px}.progress-steps{justify-content:space-between;gap:5px}.progress-step{flex-direction:column;gap:3px}.progress-step small{font-size:8px}}
+@media(max-height:760px) and (min-width:701px){.welcome-message p{font-size:14px;line-height:1.38;margin-bottom:6px}.question-instruction{margin:-8px 0 10px}.final-copy h2{font-size:clamp(28px,2.7vw,38px)}}
+@media(max-width:700px){.welcome-message p{font-size:15px}.question-instruction{margin:-9px 0 12px}.final-copy h2{font-size:30px}.animator-note{font-size:11px!important}}
+@media(prefers-reduced-motion:reduce){.experience-stage{animation:none}}
